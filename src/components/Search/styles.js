@@ -87,8 +87,8 @@ export default styled.div`
 
   .tags li::after {
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     content: 'x';
     right: -8px;
     top: -8px;
@@ -96,7 +96,6 @@ export default styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    background: #f8f8f8
-    z-index: 0;
+    background: #f8f8f8;
   }
 `;
