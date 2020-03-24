@@ -60,7 +60,7 @@ export default styled.div`
     display: flex;
     list-style: none;
     min-height: 50px;
-    width: 500px;
+    width: 80%;
     max-width: 1000px;
     margin: 0;
     padding: 0;
