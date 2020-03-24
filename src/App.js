@@ -1,26 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from 'react-redux';
+import thunkMiddleware from 'redux-thunk';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { loadState, saveState } from './localStorage';
 
-function App() {
+import Pixabay from './components/Pixabay';
+import rootReducer from './reducers';
+
+const persistedState = loadState();
+
+const store = createStore(
+  rootReducer,
+  persistedState,
+  compose(
+    applyMiddleware(thunkMiddleware),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+  ),
+);
+
+store.subscribe(() => {
+  saveState(store.getState());
+});
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Pixabay />
+    </Provider>
   );
 }
-
-export default App;
